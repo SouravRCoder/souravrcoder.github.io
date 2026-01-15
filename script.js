@@ -4,21 +4,30 @@ function scrollToSection(id) {
   });
 }
 
-document.getElementById("contactForm").addEventListener("submit", function (e) {
+const form = document.querySelector(".contact-form");
+const status = document.getElementById("formStatus");
+
+form.addEventListener("submit", async function (e) {
   e.preventDefault();
 
-  const name = document.getElementById("name").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const message = document.getElementById("message").value.trim();
-  const status = document.getElementById("formStatus");
+  const data = new FormData(form);
 
-  if (!name || !email || !message) {
+  try {
+    const response = await fetch(form.action, {
+      method: "POST",
+      body: data,
+      headers: { "Accept": "application/json" }
+    });
+
+    if (response.ok) {
+      status.style.color = "green";
+      status.textContent = "Message sent successfully!";
+      form.reset();
+    } else {
+      throw new Error();
+    }
+  } catch {
     status.style.color = "red";
-    status.textContent = "Please fill out all fields.";
-    return;
+    status.textContent = "Something went wrong. Try again.";
   }
-
-  status.style.color = "green";
-  status.textContent = "Message sent successfully!";
-  this.reset();
 });
