@@ -56,14 +56,39 @@
   <h2>Contact</h2>
   <p>Have a project or idea? Let’s work together.</p>
 
-  <form id="contactForm" class="contact-form">
-    <input type="text" id="name" placeholder="Your Name" required />
-    <input type="email" id="email" placeholder="Your Email" required />
-    <textarea id="message" placeholder="Your Message" required></textarea>
+  <form
+    action="https://formspree.io/f/mojjvkgz"
+    method="POST"
+    class="contact-form"
+  >
+    <input
+      type="text"
+      name="name"
+      placeholder="Your Name"
+      required
+    />
+
+    <input
+      type="email"
+      name="email"
+      placeholder="Your Email"
+      required
+    />
+
+    <textarea
+      name="message"
+      placeholder="Your Message"
+      required
+    ></textarea>
+
+    <!-- Formspree spam protection -->
+    <input type="text" name="_gotcha" style="display:none">
+
     <button type="submit">Send Message</button>
-    <p id="formStatus"></p>
   </form>
+  <p id="formStatus"></p>
 </section>
+
 
 
   <footer class="footer">
